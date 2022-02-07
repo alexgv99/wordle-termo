@@ -1,16 +1,17 @@
 {
-  "name": "wordle",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "start": "node --experimental-json-modules src/index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "lodash": "^4.17.21"
-  }
+	"name": "wordle",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"start": "node --experimental-json-modules src/index.js",
+		"best": "node --experimental-json-modules src/bestWord.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"lodash": "^4.17.21"
+	}
 }

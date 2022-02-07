@@ -1,9 +1,9 @@
 import wordsEn from "./dic-en.json";
 import wordsPt from "./dic-pt.json";
 
-const lettersIn = []; // letters to include with minimum quantity; ex: ["t1", "o2"]
-const lettersOut = "".split(""); // letters to exclude; ex: "bemf"
-const regex = /...../i; // put the letters you know the spot; ex: /...o./i
+const lettersIn = ["l1", "k1"]; // letters to include with minimum quantity; ex: ["t1", "o2"]
+const lettersOut = "hpoarec".split(""); // letters to exclude; ex: "bemf"
+const regex = /s.i../i; // put the letters you know the spot; ex: /...o./i
 
 function getWords(lang) {
 	let wordsOutput = [];
