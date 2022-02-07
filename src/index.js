@@ -10,7 +10,7 @@ function getWords(lang) {
 	let wordsOutput = [];
 	(lang === "pt" ? wordsPt : wordsEn)
 		.filter((word) => regex.test(word))
-		.filter((word) => !notRegex.some((not) => not.test(word)))
+		.filter((word) => !notRegex.some((re) => re.test(word)))
 		.filter((word) => {
 			return lettersIn.reduce((acc, ltr) => {
 				const [letter, min] = ltr.split("");
@@ -33,5 +33,7 @@ function getWords(lang) {
 }
 
 console.log("palavras para https://term.ooo/: ", getWords("pt"));
-console.log("palavras para https://www.powerlanguage.co.uk/wordle/: ");
-console.log(JSON.stringify(getWords("en"), null, 2));
+console.log(JSON.stringify(getWords("pt"), null, 2));
+
+// console.log("palavras para https://www.powerlanguage.co.uk/wordle/: ");
+// console.log(JSON.stringify(getWords("en"), null, 2));
