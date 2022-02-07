@@ -1,14 +1,16 @@
 import wordsEn from "./dic-en.json";
 import wordsPt from "./dic-pt.json";
 
-const lettersIn = ["l1", "k1"]; // letters to include with minimum quantity; ex: ["t1", "o2"]
-const lettersOut = "hpoarec".split(""); // letters to exclude; ex: "bemf"
-const regex = /s.i../i; // put the letters you know the spot; ex: /...o./i
+const lettersIn = []; // letters to include with minimum quantity; ex: ["t1", "o2"]
+const lettersOut = "".split(""); // letters to exclude; ex: "bemf"
+const regex = /...../i; // put the letters you know the spot; ex: /...o./i
+const notRegex = []; // positions where letters are not in the right spot; ex: [/...r./i, /r..../i, /....l/i, /.e.../i]
 
 function getWords(lang) {
 	let wordsOutput = [];
 	(lang === "pt" ? wordsPt : wordsEn)
 		.filter((word) => regex.test(word))
+		.filter((word) => !notRegex.some((not) => not.test(word)))
 		.filter((word) => {
 			return lettersIn.reduce((acc, ltr) => {
 				const [letter, min] = ltr.split("");
@@ -31,7 +33,5 @@ function getWords(lang) {
 }
 
 console.log("palavras para https://term.ooo/: ", getWords("pt"));
-console.log(
-	"palavras para https://www.powerlanguage.co.uk/wordle/: ",
-	getWords("en")
-);
+console.log("palavras para https://www.powerlanguage.co.uk/wordle/: ");
+console.log(JSON.stringify(getWords("en"), null, 2));
