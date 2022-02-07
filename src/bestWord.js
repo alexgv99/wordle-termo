@@ -1,6 +1,8 @@
 import wordsEn from "./dic-en.json";
 import wordsPt from "./dic-pt.json";
 
+const languages = ["pt", "en"];
+
 function analyzeDic(dic) {
 	const letters = {};
 	const regex = /...../i;
@@ -18,7 +20,8 @@ function analyzeDic(dic) {
 	return letters;
 }
 
-function analyzeWords(dic, letters) {
+function analyzeWords(dic) {
+	const letters = analyzeDic(dic);
 	const ranking = {};
 	dic.forEach((word) => {
 		let score = 0;
@@ -44,7 +47,17 @@ function analyzeWords(dic, letters) {
 	return output.filter((word) => word.score > 0);
 }
 
-const letters = analyzeDic(wordsEn);
-const ranking = analyzeWords(wordsEn, letters);
+const args = process.argv;
 
-console.log(JSON.stringify(ranking, null, 2));
+if (args.length !== 3) {
+	console.log("Usage: yarn best", languages);
+} else {
+	const lang = args[2];
+	if (!languages.includes(lang)) {
+		console.log("Language not implemented yet. Valid languages: ", languages);
+	} else {
+		const dic = lang === "pt" ? wordsPt : wordsEn;
+		const ranking = analyzeWords(dic);
+		console.log(JSON.stringify(ranking.slice(0, 10), null, 2));
+	}
+}
